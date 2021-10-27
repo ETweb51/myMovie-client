@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import MainView from './components/main-view/main-view';
+import Container from 'react-bootstrap/Container';
 
 // Import statement for bundle
 import './index.scss';
@@ -9,7 +10,9 @@ import './index.scss';
 class MyMovieApplication extends React.Component {
     render() {
         return (
-            <MainView />
+            <Container>
+                <MainView />
+            </Container>
         );
     }
 }
