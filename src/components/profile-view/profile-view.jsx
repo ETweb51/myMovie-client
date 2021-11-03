@@ -5,11 +5,7 @@ import { Container, Row, Col, Form, Button, CardGroup, Card } from 'react-bootst
 
 import './profile-view.scss';
 
-export function ProfileView(props) {
-    const [ username, setUsername] = useState('');
-    const [ password, setPassword] = useState('');
-    const [ email, setEmail] = useState('');
-    const [ birthday, setBirthday] = useState('');
+export class ProfileView extends React.Component {
 
     constructor() {
         super();
@@ -23,6 +19,7 @@ export function ProfileView(props) {
         };
     }
 
+    // Function to get the information of the user
     showUser() {
         e.preventDefault();
         const user = localStorage.getItem('user');
@@ -43,15 +40,30 @@ export function ProfileView(props) {
         })
     }
 
-    const handleUpdate = (e) => {
+    // Functions to get the new values for the update
+    setUsername(username) {
+        this.state.Username = username;
+    }
+    setPassword(password) {
+        this.state.Password = password;
+    }
+    setEmail(email) {
+        this.state.Email = email;
+    }
+    setBirthday(birhtday) {
+        this.state.Birthday = birthday;
+    }
+
+    // Function to update the user
+    handleUpdate(e) {
         e.preventDefault();
         const user = localStorage.getItem('user');
         const token = localStorage.getItem('token');
         axios.put(`https://mymoviedbcf.herokuapp.com/users/${user}`, {
-            Name: username,
-            Password: password,
-            Mail: email,
-            Birthday: birthday
+            Name: this.state.Username,
+            Password: this.state.Password,
+            Mail: this.state.Email,
+            Birthday: this.state.Birthday
         }, {
             headers: { Authorization: `Bearer ${token}` }
         })
@@ -65,7 +77,8 @@ export function ProfileView(props) {
         })
     }
 
-    const handleDelete = (e) => {
+    // Function to delete the user
+    handleDelete(e) {
         e.preventDefault();
         const user = localStorage.getItem('user');
         const token = localStorage.getItem('token');
@@ -83,6 +96,7 @@ export function ProfileView(props) {
         })
     }
 
+    // Function to delete a movie from favorite movies list
     deleteMovie(id) {
         e.preventDefault();
         const user = localStorage.getItem('user');
@@ -185,3 +199,5 @@ ProfileView.propTypes = {
         Email: PropTypes.string.isRequired
     }).isRequired
 };
+
+export default ProfileView;

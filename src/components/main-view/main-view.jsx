@@ -79,12 +79,13 @@ export class MainView extends React.Component {
         const { movies, user } = this.state;
     
         if (movies.length === 0) return <div className="main-view" />
-
-        <button onClick={() => {this.onLoggedOut() }}>Logout</button>
     
         return (
             <Router>
                 <Row className="main-view justify-content-md-center">
+                    <Col>
+                        <button onClick={() => {this.onLoggedOut()}} >Logout</button>
+                    </Col>
                     <Route exact path="/" render={() => {
                         if (!user) return
                             <Col>

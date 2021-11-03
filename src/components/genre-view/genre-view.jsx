@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './movie-view.scss';
+import './genre-view.scss';
 import { Card } from 'react-bootstrap';
 
 export class GenreView extends React.Component {
