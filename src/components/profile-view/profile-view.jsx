@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { Container, Row, Col, Form, Button, CardGroup, Card } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
+
+import { setUser } from '../../actions/actions';
 
 import './profile-view.scss';
 
@@ -192,12 +194,8 @@ export class ProfileView extends React.Component {
     }
 }
 
-ProfileView.propTypes = {
-    Update: PropTypes.shape({
-        Username: PropTypes.string.isRequired,
-        Password: PropTypes.string.isRequired,
-        Email: PropTypes.string.isRequired
-    }).isRequired
-};
+let mapStateToProps = state => {
+    return {user: state.user}
+}
 
-export default ProfileView;
+export default connect(mapStateToProps)(ProfileView);
